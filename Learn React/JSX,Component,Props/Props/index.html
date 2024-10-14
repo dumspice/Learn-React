@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+        Props
+
+        - React Elements: 
+            - Sử dụng props giống như với attribute của thẻ HTML
+            - 2 props class, for -> className, htmlFor
+            - Phải tuân theo quy ước có sẵn
+
+        - React Components:
+            - Sử dụng props giống như đối số của Component
+            - Tự do đặt tên props.
+                - Đặt theo CamelCase.
+                - Có thể có dấu gạch ngang
+
+        - Chú ý:
+            - Props "key" là props đặc biệt
+            - Props là đối số của Component
+                => Props có thể là bất cứ kiểu dữ liệu gì
+            - Sử dụng destructuring
+    -->
+
+    <div id="root"></div>
+    <script type="text/babel">
+      //Chữa bài
+
+      //PostList.js
+      function PostList() {
+        return (
+          <div className="post-list">
+            <PostItem
+              url="https://www.google.com/imgres?q=image&imgurl=https%3A%2F%2Fplus.unsplash.com%2Fpremium_photo-1664474619075-644dd191935f%3Ffm%3Djpg%26q%3D60%26w%3D3000%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%253D&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fimage&docid=ExDvm63D_wCvSM&tbnid=2brKLR3s5kTpPM&vet=12ahUKEwjXwp3kzo2JAxU05TQHHSVOK8sQM3oECGQQAA..i&w=3000&h=2003&hcb=2&itg=1&ved=2ahUKEwjXwp3kzo2JAxU05TQHHSVOK8sQM3oECGQQAA"
+              title="Javascript Course"
+              desc="Do you want to learn Javascript?"
+              publisher="Dumspice"
+            />
+          </div>
+        );
+      }
+      //PostItem.js
+      function PostItem(props) {
+        return (
+          <div className="post-item">
+            <img src={props.url} alt="" />
+            <h2 className="post-title">{props.title}</h2>
+            <p className="post-desc">{props.desc}</p>
+            <p className="post-publisher">{props.publisher}</p>
+          </div>
+        );
+      }
+
+      // Component App
+      function App() {
+        return (
+          <div id="wrapper">
+            <PostList />
+          </div>
+        );
+      }
+
+      //index.js: Dùng để render UI lên website, import App.js vào
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

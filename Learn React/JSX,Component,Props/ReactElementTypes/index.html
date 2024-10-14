@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+        1. React element types: string, function/class
+         1.1: Khi nào dùng function, khi nào dùng class:
+            -> Khi khái niệm hook chưa ra đời thì dùng class component đầy đủ hơn, 
+                còn bây h function component là đủ những k có nghĩa là sẽ bỏ class.
+                - Wrapper
+                    - Header: Header component
+                    - Content: Content component
+                    - Footer: Footer component
+        2. Biểu diễn đơn giản với JSX
+    -->
+    <div id="root"></div>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      function Header() {
+        //đây là function component
+        //function mà sử dụng để làm component thì phải viết hoa chữ cái đầu tiên.
+        return <div className="header">Header</div>;
+      }
+
+      //Cách 1: Dùng function component
+      function ContentFunction() {
+        return <div className="content">Content Function Component</div>;
+      }
+
+      //Cách 2: Dùng class component
+      class ContentClass extends React.Component {
+        render() {
+          // Dùng class phải có render()
+          return <div className="content">Content Class Component</div>;
+        }
+      }
+
+      function Footer() {
+        return <div className="footer">Footer</div>;
+      }
+
+      //Exercise: Render element
+
+      function PostList() {
+        return (
+          <div className="post-list">
+            <PostItem />
+            <PostItem />
+            <PostItem />
+          </div>
+        );
+      }
+
+      function PostItem() {
+        return (
+          <div className="post-item">
+            <img src="" alt="" />
+            <h2 className="post-title">Javascript Course</h2>
+            <p className="post-desc">Do you want to learn Javascript?</p>
+            <p className="post-publisher">Dumspice</p>
+          </div>
+        );
+      }
+      const element = <PostList />;
+
+      ReactDOM.render(element, root);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 
+        JSX -> JavaScript XML
+        1. Muốn tạo Element trong React thì phải dùng React.createElement mà nnay thì code dài và rối -> Dùng JSX
+        2. Cần JavaScript với Babel để dùng JSX
+         2.1. Babel là một thư viện JavaScript, dùng để phân tích, chuyển đổi cú pháp.
+         2.2. Chuyên dùng để chuyển đổi cú pháp của JavaScript ES6 -> ES5.
+         2.3. Hỗ trợ các website có thể dùng được ES6 
+        
+        3. JSX và React-DOM: 
+    -->
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+      const courses = [
+        {
+          name: "Javascript",
+        },
+        {
+          name: "HTML, CSS",
+        },
+        {
+          name: "ReactJS",
+        },
+      ];
+      const ul = (
+        <ul>
+          {courses.map((course) => {
+            return <li>{course.name}</li>;
+          })}
+        </ul>
+      );
+      ReactDOM.render(ul, rootElement);
+    </script>
+  </body>
+</html>

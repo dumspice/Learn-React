@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add ReactJS to you project</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"
+    ></script>
+    <!-- 
+      1. React.createElement() -> Create a React element
+      2. So sánh với document.createElement() -> Compare two elements -> DOM Element
+      3. Thay đổi: id, className, style
+      4. Thêm: text, HTML
+      5. Tạo: 
+            <h1 title="Heading-1" class="heading">Hello World</h1>
+      6. Tạo: 
+            <ul>
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+            </ul>
+
+      7. Tạo: 
+            <div class="post">
+              <h2 title="Học React tại F8">Học ReactJS</h2>
+              <p>Học ReactJS từ cơ bản tới nâng cao</p>
+            </div>
+    -->
+  </head>
+  <body>
+    <h1>Add ReactJS to you project</h1>
+    <div id="root"></div>
+    <script>
+      var root = document.querySelector("#root");
+
+      const h1DOM = document.createElement("h1");
+
+      h1DOM.title = "Heading-1";
+      h1DOM.className = "heading";
+      h1DOM.innerText = "Hello World";
+
+      root.appendChild(h1DOM);
+
+      const h1React = React.createElement(
+        "h1", // type
+        {
+          title: "Heading-1",
+          className: "heading",
+        }, // attribute
+        "Hello World" // children
+      );
+      console.log(h1React);
+
+      const ul = React.createElement(
+        "ul",
+        {},
+        React.createElement("li", {}, "Item 1"),
+        React.createElement("li", {}, "Item 2"),
+        React.createElement("li", {}, "Item 3")
+      );
+
+      console.log(ul);
+
+      const div = React.createElement(
+        "div",
+        { className: "post-item" },
+        React.createElement("h2", { title: "Học React tại F8" }, "Học ReactJS"),
+        React.createElement("p", {}, "Học ReactJS từ cơ bản tới nâng cao")
+      );
+
+      const greetUser = React.createElement(
+        "div",
+        { user: "user" },
+        "Hello user"
+      );
+
+      console.log(greetUser.props.user);
+
+      console.log(div);
+    </script>
+  </body>
+</html>

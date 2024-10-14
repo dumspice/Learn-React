@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 
+        Chữa bài: Render list khoá học
+
+        * Các câu hỏi thường gặp: 
+            - Tại sao khi code thuần map() phải dùng join()
+                -> Vì khi code thuần sẽ thường sử dụng innerHTML mà innerHTML giá trị nhận vào phải là 1 chuỗi, nên dùng join('') để chuyển từ array sang string
+
+            - Gặp lỗi khi render từ mảng {props: key}
+                -> Với mỗi phần tử của một mảng thì nên có một unique key để phân biệt giữa các phần tử với nhau.
+                -> Nếu warning là chưa có props: key thì phải thêm key.
+                -> Nếu warning là same key phải check xem có bị trùng key không.
+
+            - Không render được 2 element cùng lúc...
+                -> Phải có một thẻ wrap các thẻ bên trong, có thể là div, nma sau sẽ dùng React Fragments
+    -->
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+      const courses = [
+        {
+          id: 1,
+          name: "Javascript",
+        },
+        {
+          id: 2,
+          name: "HTML, CSS",
+        },
+        {
+          id: 3,
+          name: "ReactJS",
+        },
+      ];
+
+      const jsx = (
+        <React.Fragment>
+          <h1>Hello world</h1>
+          <h2>Hello Dum</h2>
+        </React.Fragment>
+      );
+      const ul = (
+        <ul>
+          {courses.map((course, index) => {
+            return <li key={index}>{course.name}</li>;
+          })}
+        </ul>
+      );
+      ReactDOM.render(jsx, rootElement);
+    </script>
+  </body>
+</html>
