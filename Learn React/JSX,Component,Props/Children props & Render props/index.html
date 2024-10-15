@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+        - Props trong JSX.
+          - <YourComponent
+              propName="String literial"
+              propName={expression}
+            />
+
+            - prop default to "true"
+            - Spread / Rest props
+            - Children prop
+              <YourComponent>String literials</YourComponent>
+              <YourComponent>{expression}</YourComponent>
+            - Render props
+    -->
+    <div id="root"></div>
+    <script type="text/babel">
+      const Button = ({ title, isPrimary, children }) => {
+        return <button>{children}</button>;
+      };
+      // props default to "true"
+      // khi truyền prop mà không truyền value vào thì mặc định prop đấy sẽ mang giá trị true
+      const App = () => {
+        const title = "click me";
+        return (
+          <div className="wrapper">
+            <Button>Click me</Button>
+          </div>
+        );
+      };
+
+      // Spread / Rest props
+      // Sử dụng spread và rest props khi mà component có nhiều props
+
+      const Input = ({ label, ...inputProps }) => {
+        return (
+          <div>
+            <label>{label}: </label>
+            <input {...inputProps} />
+          </div>
+        );
+      };
+
+      const App1 = () => {
+        return (
+          <div className="wrapper">
+            <Input
+              label="Full Name"
+              type="text"
+              placeholder="Enter name..."
+              title="This is a input"
+              onFocus={() => console.log("focus")}
+            />
+          </div>
+        );
+      };
+
+      //render props
+      const course = ["Javascript", "HTML, CSS", "ReactJS"];
+
+      const List = ({ course, children }) => {
+        console.log(children);
+        return <ul>{course.map((course) => children(course))}</ul>;
+      };
+      const App2 = () => {
+        return (
+          <div className="wrapper">
+            <List course={course}>{(course) => <li>{course}</li>}</List>
+          </div>
+        );
+      };
+
+      ReactDOM.render(<App2 />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

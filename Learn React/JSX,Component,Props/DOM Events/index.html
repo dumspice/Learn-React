@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+      Làm việc với JSX
+
+        I. Phần I: 
+          - Xử lý DOM Event.
+          - Component do chúng ta định nghĩa phải viết in hoa chữ cái đầu.
+            - Chọn component trong 1 object.
+          - Boolean, null, undefined không được render.
+          - Kết hợp toán tử logic để render theo điều kiện.
+
+        II. Phần II:
+          - Props trong JSX.
+          - <YourComponent
+              propName="String literial"
+              propName={expression}
+            />
+
+            - prop default to "true"
+            - Spread / Rest props
+            - Children prop
+              <YourComponent>String literials</YourComponent>
+              <YourComponent>{expression}</YourComponent>
+            - Render props
+    -->
+    <div id="root"></div>
+    <script type="text/babel">
+      /**
+       * Xử lý Dom event
+       *  Dom Event trong React thì tuân theo quy ước camelCase, vd: onClick, onChange, onFocus,...
+       *  Phải truyền vào trong dom event một function.
+       *  Dom event trong React có cú pháp khác so với code JavaScript thuần.
+       */
+
+      /**
+       * Đặt tên Component:
+       *  Chữ cái đầu phải viết hoa, viết thường thì sẽ ăn warning
+       *
+       */
+
+      const Form = {
+        //Kể cả đây là 1 object, nhưng bên trong nó chứa component, nên phải viết hoa chữ cái đầu.
+        Input() {
+          return <input />;
+        },
+        CheckBox() {
+          return <input type="checkbox" />;
+        },
+      };
+
+      function App() {
+        const type = "Input";
+
+        const FormElement = Form[type]; //Một cách khác để render component trong 1 object
+
+        // <Form[type] /> cũng là 1 component nhưng cách viết lại sai cú pháp nên react sẽ k render ra màn hình
+        return (
+          <div id="wrapper">
+            <FormElement />
+          </div>
+        );
+      }
+
+      //Tạo ra những component đa năng
+      function Button({ title, href, onClick }) {
+        let Component = "button"; //Tạo component button
+
+        const props = {}; //tạo object để lưu props
+
+        if (href) {
+          Component = "a";
+          props.href = href; // nếu có href thì thêm href vào props
+        }
+
+        if (onClick) {
+          props.onClick = onClick; // nếu có onClick thì thêm onClick vào props
+        }
+
+        console.log(props);
+        return <Component {...props}>{title}</Component>; // giải ra các props trong component
+      }
+
+      function App2() {
+        return (
+          <div className="wrapper">
+            <Button
+              title="click me"
+              href="https://fullstack.edu.vn"
+              onClick={() => console.log(Math.random())}
+            />
+          </div>
+        );
+      }
+
+      /**
+       * Boolean, null, và undefined sẽ không được render để dev có thể render component theo điều kiện
+       *
+       */
+      function App3({ title }) {
+        //Dùng toán tử logic để render component theo điều kiện
+        let firstAccess = true;
+        return (
+          <div className="wrapper">
+            <h1>{title || "Hello Guys"}</h1>
+            {firstAccess && <p>Welcome to the Website</p>}
+          </div>
+          //vì không có giá trị falsy nên trả về giá trị của toán hạng cuối cùng là thẻ p
+        );
+      }
+
+      ReactDOM.render(
+        <App3 title="Welcome back!" />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>

@@ -45,22 +45,27 @@
         return (
           <div className="post-list">
             <PostItem
-              url="https://www.google.com/imgres?q=image&imgurl=https%3A%2F%2Fplus.unsplash.com%2Fpremium_photo-1664474619075-644dd191935f%3Ffm%3Djpg%26q%3D60%26w%3D3000%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%253D&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fimage&docid=ExDvm63D_wCvSM&tbnid=2brKLR3s5kTpPM&vet=12ahUKEwjXwp3kzo2JAxU05TQHHSVOK8sQM3oECGQQAA..i&w=3000&h=2003&hcb=2&itg=1&ved=2ahUKEwjXwp3kzo2JAxU05TQHHSVOK8sQM3oECGQQAA"
+              url="https://www.google.com/imgres?q=image&imgurl=https%3A%2F%2Fdfstudio-d420.kxcdn.com%2Fwordpress%2Fwp-content%2Fuploads%2F2019%2F06%2Fdigital_camera_photo-1080x675.jpg&imgrefurl=https%3A%2F%2Fwww.dfstudio.com%2Fdigital-image-size-and-resolution-what-do-you-need-to-know%2F&docid=KEFtss0dYCDpzM&tbnid=0kl2WrGN8BrkhM&vet=12ahUKEwiQ3or5hY6JAxU5k1YBHR4xGukQM3oECBgQAA..i&w=1080&h=675&hcb=2&ved=2ahUKEwiQ3or5hY6JAxU5k1YBHR4xGukQM3oECBgQAA.png"
               title="Javascript Course"
               desc="Do you want to learn Javascript?"
               publisher="Dumspice"
+              callback={(random) => {
+                return random;
+              }} //callback của component (truyền 1 hàm vào props)
             />
           </div>
         );
       }
+
       //PostItem.js
-      function PostItem(props) {
+      function PostItem({ url, title, desc, publisher, callback }) {
         return (
           <div className="post-item">
-            <img src={props.url} alt="" />
-            <h2 className="post-title">{props.title}</h2>
-            <p className="post-desc">{props.desc}</p>
-            <p className="post-publisher">{props.publisher}</p>
+            <img src={url} alt="" />
+            <h2 className="post-title">{title}</h2>
+            <p className="post-desc">{desc}</p>
+            <p className="post-publisher">{publisher}</p>
+            <p className="post-random">{callback(Math.random())}</p>
           </div>
         );
       }
@@ -76,6 +81,14 @@
 
       //index.js: Dùng để render UI lên website, import App.js vào
       ReactDOM.render(<App />, document.getElementById("root"));
+
+      //Props "key" là một props đặc biệt
+      // Khi nào ta đưa React Element vào trong Array thì mới cần đến props key
+
+      //Props là đối số của Component
+      // Nó giống như việc truyền đối số vào trong function
+
+      //Destructuring
     </script>
   </body>
 </html>
