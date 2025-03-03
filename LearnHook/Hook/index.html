@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
+
+      .active {
+        background-color: #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a class="active" target="_blank" href="https://www.google.com"
+          >Google</a
+        >
+      </li>
+      <li><a target="_blank" href="https://www.bing.com">Bing</a></li>
+      <li><a target="_blank" href="https://www.yahoo.com">Yahoo</a></li>
+      <li><a target="_blank" href="https://www.wikiwand.com">Wikiwand</a></li>
+      <li><a target="_blank" href="https://www.imdb.com">IMDb</a></li>
+      <li><a target="_blank" href="https://www.youtube.com">YouTube</a></li>
+      <li><a target="_blank" href="https://www.github.com">GitHub</a></li>
+      <li>
+        <a target="_blank" href="https://www.stackoverflow.com"
+          >Stack Overflow</a
+        >
+      </li>
+      <li><a target="_blank" href="https://www.codepen.com">CodePen</a></li>
+      <li>
+        <a target="_blank" href="https://www.free-code-camp.com"
+          >FreeCodeCamp</a
+        >
+      </li>
+    </ul>
+  </body>
+</html>
